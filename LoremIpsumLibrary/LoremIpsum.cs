@@ -276,6 +276,11 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
       }
     }
 
+    /// <summary>
+    /// Generate words.
+    /// </summary>
+    /// <param name="count">The number of words to be generated.</param>
+    /// <returns>A string with <paramref name="count"/> words generated.</returns>
     private static string GenerateWords(int count)
     {
       return string.Join(" ", Enumerable.Repeat("lorem", count));
