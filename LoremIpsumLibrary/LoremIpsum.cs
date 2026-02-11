@@ -221,7 +221,7 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
 ";
 
     /// <summary>
-    /// Retourne tout le texte complet.
+    /// Returns the whole text.
     /// </summary>
     public static string CreateAllText()
     {
@@ -229,7 +229,7 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     }
 
     /// <summary>
-    /// Exemple : retourne le texte répété plusieurs fois
+    /// Returns the whole text many times.
     /// </summary>
     public static string CreateAllTextManyTimes(int repeatCount)
     {
@@ -248,6 +248,13 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
       return sb.ToString();
     }
 
+    /// <summary>
+    /// Create text.
+    /// </summary>
+    /// <param name="type">The type of text to be created.</param>
+    /// <param name="amount">The amount of text to create.</param>
+    /// <returns>A string with the created text.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">Exception if no type if given.</exception>
     public static string CreateText(LipsumType type, int amount)
     {
       switch (type)
