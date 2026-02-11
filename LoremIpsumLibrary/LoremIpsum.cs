@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 
 namespace LoremIpsumLibrary
 {
   public static class LoremIpsum
   {
-    private static readonly string LongText = @"
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae lorem consequat, fermentum neque interdum, condimentum elit. Sed eget faucibus velit. Pellentesque sed iaculis dolor, vitae tempus magna. Vivamus iaculis imperdiet nibh, in mollis eros rutrum et. Sed suscipit purus in ex fermentum, tempor aliquet ante hendrerit. Maecenas mattis, risus viverra porta consequat, odio augue commodo justo, mattis hendrerit diam nisi vitae velit. Cras eu pharetra urna. Sed a nisi at dolor dignissim dapibus. Fusce et tellus vitae purus aliquet placerat. Donec sagittis elit vitae diam eleifend, ut suscipit erat blandit. Ut aliquam magna vitae turpis sagittis pretium. Ut elementum est nec magna iaculis viverra.
+    private static readonly string LongText = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae lorem consequat, fermentum neque interdum, condimentum elit. Sed eget faucibus velit. Pellentesque sed iaculis dolor, vitae tempus magna. Vivamus iaculis imperdiet nibh, in mollis eros rutrum et. Sed suscipit purus in ex fermentum, tempor aliquet ante hendrerit. Maecenas mattis, risus viverra porta consequat, odio augue commodo justo, mattis hendrerit diam nisi vitae velit. Cras eu pharetra urna. Sed a nisi at dolor dignissim dapibus. Fusce et tellus vitae purus aliquet placerat. Donec sagittis elit vitae diam eleifend, ut suscipit erat blandit. Ut aliquam magna vitae turpis sagittis pretium. Ut elementum est nec magna iaculis viverra.
 
 Aliquam consectetur, leo vitae volutpat ullamcorper, tellus tortor condimentum nibh, eu auctor dui velit quis elit. Phasellus viverra turpis ut nisi pharetra congue. Sed porta ullamcorper dui, vel egestas augue dignissim sit amet. Nam malesuada ullamcorper ipsum a vestibulum. Proin sagittis auctor justo eu sodales. In non efficitur turpis. Integer mi diam, condimentum vel scelerisque a, condimentum eget arcu.
 
@@ -254,7 +252,7 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     /// <param name="type">The type of text to be created.</param>
     /// <param name="amount">The amount of text to create.</param>
     /// <returns>A string with the created text.</returns>
-    public static string CreateText(LipsumType type, int amount)
+    public static string CreateText(LipsumType type, int amount = 1)
     {
       switch (type)
       {
@@ -280,34 +278,35 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     /// </summary>
     /// <param name="count">The number of words to be generated.</param>
     /// <returns>A string with <paramref name="count"/> words generated.</returns>
-    private static string GenerateWords(int count)
+    private static string GenerateWords(int count = 1)
     {
       StringBuilder stringBuilder = new StringBuilder();
 
-      for (int i = 0; i <= count; i++)
+      for (int i = 0; i < count; i++)
       {
         stringBuilder.Append(GetWord(LongText, i));
+        stringBuilder.Append(" ");
       }
 
-      return stringBuilder.ToString();
+      return stringBuilder.ToString().TrimEnd();
     }
 
     /// <summary>
     /// Get the nth word from a long text string.
     /// </summary>
     /// <param name="longText">The long text.</param>
-    /// <param name="i">The nth index.</param>
-    /// <returns>The <paramref name="i"/>th word.</returns>
-    private static string GetWord(string longText, int i)
+    /// <param name="index">The nth index.</param>
+    /// <returns>The <paramref name="index"/>th word.</returns>
+    private static string GetWord(string longText, int index)
     {
       var textArray = longText.Split(' ');
-      if (i > textArray.Length - 1)
+      if (index > textArray.Length - 1)
       {
         return textArray[textArray.Length - 1];
       }
       else
       {
-        return textArray[i];
+        return textArray[index];
       }
     }
 
