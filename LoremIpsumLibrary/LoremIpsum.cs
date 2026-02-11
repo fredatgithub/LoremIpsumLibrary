@@ -238,14 +238,14 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
         return string.Empty;
       }
 
-      StringBuilder sb = new StringBuilder();
+      StringBuilder stringBuilder = new StringBuilder();
 
       for (int i = 0; i < repeatCount; i++)
       {
-        sb.AppendLine(LongText);
+        stringBuilder.AppendLine(LongText);
       }
 
-      return sb.ToString();
+      return stringBuilder.ToString();
     }
 
     /// <summary>
@@ -254,7 +254,6 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     /// <param name="type">The type of text to be created.</param>
     /// <param name="amount">The amount of text to create.</param>
     /// <returns>A string with the created text.</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Exception if no type if given.</exception>
     public static string CreateText(LipsumType type, int amount)
     {
       switch (type)
@@ -272,7 +271,7 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
           return GenerateList(amount);
 
         default:
-          throw new ArgumentOutOfRangeException();
+          return GenerateWords(amount);
       }
     }
 
@@ -283,7 +282,33 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     /// <returns>A string with <paramref name="count"/> words generated.</returns>
     private static string GenerateWords(int count)
     {
-      return string.Join(" ", Enumerable.Repeat("lorem", count));
+      StringBuilder stringBuilder = new StringBuilder();
+
+      for (int i = 0; i <= count; i++)
+      {
+        stringBuilder.Append(GetWord(LongText, i));
+      }
+
+      return stringBuilder.ToString();
+    }
+
+    /// <summary>
+    /// Get the nth word from a long text string.
+    /// </summary>
+    /// <param name="longText">The long text.</param>
+    /// <param name="i">The nth index.</param>
+    /// <returns>The <paramref name="i"/>th word.</returns>
+    private static string GetWord(string longText, int i)
+    {
+      var textArray = longText.Split(' ');
+      if (i > textArray.Length - 1)
+      {
+        return textArray[textArray.Length - 1];
+      }
+      else
+      {
+        return textArray[i];
+      }
     }
 
     private static string GenerateParagraphs(int count)
