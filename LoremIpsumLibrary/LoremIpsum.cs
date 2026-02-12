@@ -221,7 +221,7 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
     /// <summary>
     /// Returns the whole text.
     /// </summary>
-    public static string CreateAllText()
+    public static string CreateFullText()
     {
       return LongText;
     }
@@ -310,16 +310,32 @@ Nulla vel diam ipsum. Sed pulvinar egestas accumsan. Nulla eget vulputate lectus
       }
     }
 
+    /// <summary>
+    /// Generates a string containing the specified number of placeholder paragraphs.
+    /// </summary>
+    /// <param name="count">The number of paragraphs to generate. Must be non-negative.</param>
+    /// <returns>A string consisting of the specified number of paragraphs, each separated by two newline characters. Returns an empty string if count is zero.</returns>
     private static string GenerateParagraphs(int count)
     {
       return string.Join("\n\n", Enumerable.Repeat("Lorem ipsum dolor sit amet.", count));
     }
 
+    /// <summary>
+    /// Generates a string consisting of a specified number of 'A' characters.
+    /// </summary>
+    /// <param name="count">The number of times the character 'A' appears in the generated string. Must be non-negative.</param>
+    /// <returns>A string containing 'A' repeated the specified number of times. Returns an empty string if count is 0.</returns>
     private static string GenerateBytes(int count)
     {
       return new string('A', count);
     }
 
+    /// <summary>
+    /// Generates a formatted list of items as a single string, with each item on a new line.
+    /// </summary>
+    /// <param name="count">The number of items to include in the generated list. Must be greater than or equal to 0.</param>
+    /// <returns>A string containing the formatted list, with each item on a separate line. Returns an empty string if count is
+    /// 0.</returns>
     private static string GenerateList(int count)
     {
       return string.Join("\n", Enumerable.Range(1, count).Select(i => $"- Item {i}"));
